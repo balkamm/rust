@@ -33,9 +33,9 @@ use util::nodemap::NodeMap;
 
 use arena::TypedArena;
 use collections::HashMap;
+use libc::{c_uint, c_longlong, c_ulonglong, c_char};
 use std::c_str::ToCStr;
 use std::cell::{Cell, RefCell};
-use std::libc::{c_uint, c_longlong, c_ulonglong, c_char};
 use std::vec_ng::Vec;
 use syntax::ast::Ident;
 use syntax::ast;

@@ -26,7 +26,7 @@ use middle::ty;
 use util::ppaux::ty_to_str;
 
 use arena::TypedArena;
-use std::libc::c_uint;
+use libc::c_uint;
 use std::option::{Some,None};
 use std::vec_ng::Vec;
 use std::vec_ng;

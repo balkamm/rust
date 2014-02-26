@@ -24,7 +24,7 @@ use std::cast;
 use std::vec;
 use std::vec_ng::Vec;
 
-use std::libc::{c_uint};
+use libc::{c_uint};
 
 #[deriving(Clone, Eq, Show)]
 pub struct Type {

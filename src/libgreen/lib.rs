@@ -177,6 +177,7 @@
 #[allow(deprecated_owned_vector)];
 
 extern crate rand;
+extern crate libc;
 
 use std::mem::replace;
 use std::os;

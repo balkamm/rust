@@ -40,6 +40,7 @@ extern crate sync;
 extern crate getopts;
 extern crate collections;
 extern crate time;
+extern crate libc;
 
 use back::link;
 use driver::session;

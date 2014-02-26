@@ -15,8 +15,8 @@
 // memory, which makes for some *confusing* logs. That's why these are here
 // instead of in std.
 
+extern crate libc;
 use std::io::timer;
-use std::libc;
 use std::str;
 use std::io::process::{Process, ProcessOutput};
 
@@ -74,9 +74,9 @@ fn test_destroy_actually_kills(force: bool) {
 
     #[cfg(windows)]
     fn process_exists(pid: libc::pid_t) -> bool {
-        use std::libc::types::os::arch::extra::DWORD;
-        use std::libc::funcs::extra::kernel32::{CloseHandle, GetExitCodeProcess, OpenProcess};
-        use std::libc::consts::os::extra::{FALSE, PROCESS_QUERY_INFORMATION, STILL_ACTIVE };
+        use libc::types::os::arch::extra::DWORD;
+        use libc::funcs::extra::kernel32::{CloseHandle, GetExitCodeProcess, OpenProcess};
+        use libc::consts::os::extra::{FALSE, PROCESS_QUERY_INFORMATION, STILL_ACTIVE };
 
         unsafe {
             let process = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, pid as DWORD);

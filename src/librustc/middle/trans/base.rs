@@ -74,9 +74,9 @@ use util::nodemap::NodeMap;
 
 use arena::TypedArena;
 use collections::HashMap;
+use libc::c_uint;
 use std::c_str::ToCStr;
 use std::cell::{Cell, RefCell};
-use std::libc::c_uint;
 use std::local_data;
 use std::vec_ng::Vec;
 use syntax::abi::{X86, X86_64, Arm, Mips, Rust, RustIntrinsic, OsWin32};

@@ -19,7 +19,7 @@ use std::cast;
 use std::vec_ng::Vec;
 use std::io;
 use std::io::{fs, TempDir};
-use std::libc;
+use libc;
 use std::os;
 use std::io::process::{ProcessConfig, Process, ProcessOutput};
 use std::str;

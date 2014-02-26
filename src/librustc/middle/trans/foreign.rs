@@ -26,7 +26,7 @@ use middle::trans::type_of;
 use middle::ty::FnSig;
 use middle::ty;
 use std::cmp;
-use std::libc::c_uint;
+use libc::c_uint;
 use std::vec_ng::Vec;
 use syntax::abi::{Cdecl, Aapcs, C, AbiSet, Win64};
 use syntax::abi::{RustIntrinsic, Rust, Stdcall, Fastcall, System};
