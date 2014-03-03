@@ -98,6 +98,7 @@ pub use types::os::arch::posix88::*;
 pub use types::os::arch::posix01::*;
 pub use types::os::arch::posix08::*;
 pub use types::os::arch::bsd44::*;
+#[cfg(not(windows))]
 pub use types::os::arch::extra::*;
 
 pub use consts::os::c95::*;
@@ -994,7 +995,6 @@ pub mod types {
             pub mod bsd44 {
             }
             pub mod extra {
-                use ptr;
                 use consts::os::extra::{MAX_PROTOCOL_CHAIN,
                                               WSAPROTOCOL_LEN};
                 use types::common::c95::c_void;
@@ -1105,8 +1105,8 @@ pub mod types {
                             wProcessorArchitecture: 0,
                             wReserved: 0,
                             dwPageSize: 0,
-                            lpMinimumApplicationAddress: ptr::mut_null(),
-                            lpMaximumApplicationAddress: ptr::mut_null(),
+                            lpMinimumApplicationAddress: 0 as LPVOID,
+                            lpMaximumApplicationAddress: 0 as LPVOID,
                             dwActiveProcessorMask: 0,
                             dwNumberOfProcessors: 0,
                             dwProcessorType: 0,
@@ -3672,28 +3672,12 @@ pub mod funcs {
             use types::common::posix88::{DIR, dirent_t};
             use types::os::arch::c95::{c_char, c_int, c_long};
 
-            // NB: On OS X opendir and readdir have two versions,
-            // one for 32-bit kernelspace and one for 64.
-            // We should be linking to the 64-bit ones, called
-            // opendir$INODE64, etc. but for some reason rustc
-            // doesn't link it correctly on i686, so we're going
-            // through a C function that mysteriously does work.
-            pub unsafe fn opendir(dirname: *c_char) -> *DIR {
-                rust_opendir(dirname)
-            }
-            pub unsafe fn readdir_r(dirp: *DIR,
-                                    entry: *mut dirent_t,
-                                    result: *mut *mut dirent_t) -> c_int {
-                rust_readdir_r(dirp, entry, result)
-            }
-
             extern {
-                fn rust_opendir(dirname: *c_char) -> *DIR;
-                fn rust_readdir_r(dirp: *DIR, entry: *mut dirent_t,
-                                  result: *mut *mut dirent_t) -> c_int;
-            }
-
-            extern {
+                pub fn opendir(dirname: *c_char) -> *DIR;
+                pub fn readdir(dirp: *DIR) -> *dirent_t;
+                pub fn readdir_r(dirp: *DIR,
+                                 entry: *mut dirent_t,
+                                 result: *mut *mut dirent_t) -> c_int;
                 pub fn closedir(dirp: *DIR) -> c_int;
                 pub fn rewinddir(dirp: *DIR);
                 pub fn seekdir(dirp: *DIR, loc: c_long);

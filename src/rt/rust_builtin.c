@@ -272,39 +272,6 @@ rust_mktime(rust_tm* timeptr) {
     return mktime(&t);
 }
 
-#ifndef _WIN32
-
-DIR*
-rust_opendir(char *dirname) {
-    return opendir(dirname);
-}
-
-int
-rust_readdir_r(DIR *dirp, struct dirent *entry, struct dirent **result) {
-    return readdir_r(dirp, entry, result);
-}
-
-int
-rust_dirent_t_size() {
-    return sizeof(struct dirent);
-}
-
-#else
-
-void
-rust_opendir() {
-}
-
-void
-rust_readdir() {
-}
-
-void
-rust_dirent_t_size() {
-}
-
-#endif
-
 uintptr_t
 rust_running_on_valgrind() {
     return RUNNING_ON_VALGRIND;
