@@ -101,7 +101,6 @@ pub use types::os::arch::posix88::*;
 pub use types::os::arch::posix01::*;
 pub use types::os::arch::posix08::*;
 pub use types::os::arch::bsd44::*;
-#[cfg(not(windows))]
 pub use types::os::arch::extra::*;
 
 pub use consts::os::c95::*;
